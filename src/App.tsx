@@ -1,6 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {getMenu, getProductById, getProducts} from "./api/products";
 
 function App() {
+  useEffect(() => {
+    getProducts();
+    getMenu();
+    getProductById('1');
+  } , [])
   return (
     <div className="App">
       <header className="App-header">
