@@ -6,4 +6,4 @@ export type ProductType = {
     price: number;
 }
 
-export type ProductsResponseType = Array<ProductType>;
+export type ProductsResponseType = ProductType[];
