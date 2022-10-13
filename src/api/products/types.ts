@@ -1,9 +1,9 @@
 export type ProductType = {
-    colour: string;
-    id: number;
-    img: string;
-    name: string;
-    price: number;
+    colour: string
+    id: number
+    img: string
+    name: string
+    price: number
 }
 
-export type ProductsResponseType = ProductType[];
+export type ProductsResponseType = ProductType[]
