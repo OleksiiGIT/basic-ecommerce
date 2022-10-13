@@ -1,8 +1,8 @@
-import React from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
-import Basket from 'pages/Basket'
-import Home from './pages/Home'
-import Product from './pages/Product'
+import React from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import Basket from 'pages/Basket';
+import Home from './pages/Home';
+import Product from './pages/Product';
 
 function App() {
     return (
@@ -28,7 +28,7 @@ function App() {
                 </Routes>
             </main>
         </div>
-    )
+    );
 }
 
-export default App
+export default App;
