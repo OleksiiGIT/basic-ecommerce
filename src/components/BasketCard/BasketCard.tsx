@@ -1,14 +1,28 @@
 import React from 'react';
-import { Box, Text, Image, Button, Flex } from '@chakra-ui/react';
-import { ProductType } from 'api/products/types';
+import { Box, Text, Image, Button, Flex, HStack } from '@chakra-ui/react';
 import { useBasket } from 'contexts/BasketContext';
+import { BasketProductType } from 'pages/Basket';
 import { useNavigate } from 'react-router-dom';
 
-export const ProductCard = ({ name, img, colour, price, id }: ProductType) => {
+export const BasketCard = ({
+    name,
+    img,
+    colour,
+    price,
+    id,
+    quantity,
+}: BasketProductType) => {
     const navigate = useNavigate();
-    const { onAdd } = useBasket();
+    const { onAdd, onRemove } = useBasket();
     return (
-        <Flex boxShadow="lg" p="6" rounded="md" bg="white">
+        <Flex
+            boxShadow="sm"
+            p="6"
+            rounded="md"
+            bg="white"
+            w="100%"
+            justifyContent="space-between"
+        >
             <Image
                 boxSize="150px"
                 minW="150px"
@@ -23,9 +37,13 @@ export const ProductCard = ({ name, img, colour, price, id }: ProductType) => {
                 <Flex justifyContent="space-between" m="10px 0">
                     <Text>Color: {colour}</Text>
                     <Text>Price: {price}£</Text>
+                    <Text>Quantity: {quantity}</Text>
                 </Flex>
-                <Button onClick={() => onAdd(id)}>Add to basket</Button>
             </Box>
+            <HStack spacing="10px">
+                <Button onClick={() => onAdd(id)}>Increase</Button>
+                <Button onClick={() => onRemove(id)}>Decrease</Button>
+            </HStack>
         </Flex>
     );
 };

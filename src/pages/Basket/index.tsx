@@ -3,12 +3,16 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { ProductsResponseType, ProductType } from 'api/products/types';
 import { useBasket } from 'contexts/BasketContext';
+import { Box, VStack, Text } from '@chakra-ui/react';
+import { BasketCard } from 'components/BasketCard';
 
-export type BasketProducts = Array<ProductType & { quantity: number }>;
+export type BasketProductType = ProductType & { quantity: number };
+
+export type BasketProducts = Array<BasketProductType>;
 
 const Basket = () => {
     //TODO: Save basket to local storage
-    const { productsIds: basketProductsIds, onRemove, onAdd } = useBasket();
+    const { productsIds: basketProductsIds } = useBasket();
     const products = useSelector((state: RootState) => state.products.items);
 
     //TODO: replace by getProductsByIds
@@ -38,15 +42,16 @@ const Basket = () => {
     };
 
     return (
-        <div>
-            {JSON.stringify(
-                replaceIdByProductData(products, basketProductsIds),
-                null,
-                2
-            )}
-            <button onClick={() => onAdd(1)}>+</button>
-            <button onClick={() => onRemove(1)}>-</button>
-        </div>
+        <Box>
+            <VStack spacing="20px">
+                {!basketProductsIds.length && <Text>Empty basket</Text>}
+                {replaceIdByProductData(products, basketProductsIds)
+                    .sort((a, b) => a.id - b.id)
+                    .map((product) => (
+                        <BasketCard key={product.id} {...product} />
+                    ))}
+            </VStack>
+        </Box>
     );
 };
 

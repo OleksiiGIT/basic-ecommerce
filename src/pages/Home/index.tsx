@@ -7,12 +7,15 @@ import {
     setProducts,
 } from 'features/products/productsSlice';
 import { RootState } from 'store';
-import { Box, SimpleGrid } from '@chakra-ui/react';
+import { Box, CircularProgress, SimpleGrid } from '@chakra-ui/react';
 import { ProductCard } from 'components/ProductCard';
 
 const Home = () => {
-    const { items } = useSelector((state: RootState) => state.products);
     const dispatch = useDispatch();
+
+    const { items, isLoading } = useSelector(
+        (state: RootState) => state.products
+    );
 
     useEffect(() => {
         dispatch(setLoading(true));
@@ -24,9 +27,14 @@ const Home = () => {
 
     return (
         <Box>
+            {isLoading && (
+                <Box textAlign="center">
+                    <CircularProgress isIndeterminate />
+                </Box>
+            )}
             <SimpleGrid columns={2} spacing={10}>
                 {items.map((product) => (
-                    <ProductCard {...product} />
+                    <ProductCard key={product.id} {...product} />
                 ))}
             </SimpleGrid>
         </Box>
