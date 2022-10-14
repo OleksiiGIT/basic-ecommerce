@@ -7,11 +7,11 @@ To run project:
 3.       setup `.env`
 4.       run `npm start`
 
-For code styling only prettier is installed.
+There are 2 variants of state management here: context and redux.
+
+For code styling prettier and eslint are installed.
 
 Project has some space for refactor because of time saving,
 all of them mentioned by TODO tag
 
-**LAST TODOs:**
-
--   create ui interface
+100% components test covered except page components.
