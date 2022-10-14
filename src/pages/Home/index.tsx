@@ -7,9 +7,11 @@ import {
     setProducts,
 } from 'features/products/productsSlice';
 import { RootState } from 'store';
+import { Box, SimpleGrid } from '@chakra-ui/react';
+import { ProductCard } from 'components/ProductCard';
 
 const Home = () => {
-    const products = useSelector((state: RootState) => state.products.items);
+    const { items } = useSelector((state: RootState) => state.products);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,10 +23,13 @@ const Home = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Products</h1>
-            {products.map((item) => item.id)}
-        </div>
+        <Box>
+            <SimpleGrid columns={2} spacing={10}>
+                {items.map((product) => (
+                    <ProductCard {...product} />
+                ))}
+            </SimpleGrid>
+        </Box>
     );
 };
 

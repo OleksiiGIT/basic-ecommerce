@@ -14,7 +14,4 @@ all of them mentioned by TODO tag
 
 **LAST TODOs:**
 
--   connect eslint
--   connect ui lib
 -   create ui interface
--   create store for products keeping
